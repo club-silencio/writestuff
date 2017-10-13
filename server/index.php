@@ -5,20 +5,6 @@ header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With,Content-Type, Accept");
 header('Access-Control-Allow-Methods: POST');
 
-//$post_body = file_get_contents('php://input');
-
-echo $_POST['imgBase64'];
-
-//if (isset($GLOBALS["HTTP_RAW_POST_DATA"])) {
-//  $imageData = $GLOBALS['HTTP_RAW_POST_DATA'];
-//  $filteredData = substr($imageData, strpos($imageData, ",") + 1);
-//  $unencodedData = base64_decode($filteredData);
-//  $fp = fopen('/path/to/file.png', 'wb');
-//
-//  fwrite($fp, $unencodedData);
-//  fclose($fp);
-//}
-
 if (isset($_POST['imgBase64'])) {
   $upload_dir = 'handwriting/';
   $img = $_POST['imgBase64'];

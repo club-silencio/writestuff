@@ -31,19 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // trimCanvas(canvas); // trim out whitespace
     var imageData = signaturePad.toDataURL();
-    document.getElementsByName("image")[0].setAttribute("value", imageData);
-    console.log($('#image'));
     
     $.ajax({
-      type: "POST",
       url: "server/index.php",
+      type: "post",
       crossDomain: true,
-      dataType: "json",
-      data: { 
-        imgBase64: imageData
+      async: false,
+      dataType: "text",
+      data: {
+        'imgBase64': imageData
       },
       success: function(result) {
-        alert('Data has been successfully submitted!');
+        alert('Image saved!');
       },
       statusCode: {
         200: function (response) {
@@ -66,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       },
       error: function (e) {
-        // error is always triggering for some reason?
         console.log(e);
       }
     }).done(function(o) {
