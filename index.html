@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- The only weird stuff I used was the Bulma framework for styling and SASS for CSS preprocessing. -->
+    <meta charset="utf-8">
+    <meta name="description" content="American Express - The Write Stuff">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>The Write Stuff by AMEX Open</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body onselectstart="return false">
+   
+    <section class="section hero is-fullheight orange">
+      <div class="level container">
+        <div class="level-left" id="clear"><h1>AMEX OPEN</h1></div>
+        <div class="level-right"><h1>The Write Stuff</h1></div>
+      </div>
+      <div class="container">
+        <h2>Please copy the phrase into<br>the space below</h2>
+        <p class="quote">&ldquo;Good ideas are nothing without a plan of action.&rdquo;</p>
+      </div>
+      <div class="hero-body" id="signaturePad">
+        <div class="container">
+          <canvas></canvas>  
+        </div>
+      </div>
+      <div class="hero-footer">
+        <div class="container">
+          <form method="POST">
+            <input type="hidden" id="image" name="image" value="">
+            <input type="submit" id="save" class="is-pulled-right is-size-3 button save">
+          </form>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Vendor Scripts -->
+    <script src="plugins/jquery.min.js"></script>
+    <script src="plugins/signature_pad.js"></script> <!-- *modified* Core signature plugin -->
+    <script src="plugins/trim-canvas.js"></script> <!-- Plugin to trim the canvas down -->
+    <!-- Main Scripts -->
+    <script src="app.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,76 @@
+// Make sure ruby is updated (I used 2.4.2) and sass is installed. To compile, use the command: $sass styles.sass main.css
+@import 'bulma'
+
+// Variables
+
+$font-stack: BentonSans, sans-serif
+$header-size: 60px
+$body-copy-size: 40px
+
+
+// Template Styling
+
+html
+  overflow-y: hidden
+  
+body
+  background: url('img/bg-orange.png') no-repeat left top
+  background-size: cover
+  font-family: $font-stack
+  user-select: none
+  border: none
+  overflow: none
+  
+#signaturePad, #signaturePad .container, .signature-container
+  height: 100%
+  width: 100%
+
+#signaturePad
+  
+canvas
+  height: 400px
+  width: 100%
+  background-color: #fff
+  border: 1px #7587b9 solid
+  border-radius: 7px
+
+  
+// Typography
+
+h1, h2, h3, h4
+  text-transform: uppercase
+  font-family: 'BentonSans Black'
+  
+h1
+  font-size: $header-size
+  
+h2
+  font-size: $header-size * .8
+  
+h3
+  font-size: $header-size * .5
+  
+p
+  font-size: $body-copy-size
+  font-family: $font-stack
+  
+.quote
+  font-style: italic
+  
+.orange, .purple
+  h1, h2, h3, p
+    color: #fff
+
+.orange
+  button
+    color: #ffb00f
+  
+.purple
+  button
+    color: #4708a1
+    
+.green
+  h1, h2, h3, p
+    color: #002663
+  button
+    color: #1ab0a8
