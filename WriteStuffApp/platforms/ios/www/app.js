@@ -47,12 +47,21 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#splash').fadeOut();
     
     setTimeout(function() {
-      $('#instructions').fadeIn();
+      $('#identity').fadeIn();
     }, 500);    
+  });
+  
+  $('#submit').click(function() {
+    $('#identity').fadeOut();
+    
+    setTimeout(function() {
+      $('#instructions').fadeIn();
+    }, 500);
   });
   
   $('#next-inst').click(function() {
     $('#instructions').fadeOut();
+    
     setTimeout(function() {
       $('#phrase').fadeIn();
     }, 500);
@@ -61,13 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(function() {
       resizeCanvas();
     }, 600);
-  });
-  
-  saveSigButton.click(function(){
-    $('#signature').fadeOut();
-    setTimeout(function() {
-      $('#identity').fadeIn();
-    }, 500);
   });
   
   savePhraseButton.click(function() {
@@ -84,8 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 600);
   });
   
-  $('#submit').click(function() {
-    $('#identity').fadeOut();
+  saveSigButton.click(function(){
+    $('#signature').fadeOut();
+    
     setTimeout(function() {
       $('#thanks').fadeIn();
     }, 500);

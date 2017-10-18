@@ -6173,8 +6173,11 @@ canvas {
   background: url("img/bg-green.png") no-repeat left top;
   background-size: cover; }
 
-#signature img.open-logo {
+#signature img.open-logo, #thanks img.open-logo {
   width: 200px; }
+
+#thanks p {
+  margin: 40px 0; }
 
 #instructions, #phrase, #signature, #identity, #thanks {
   display: none; }
@@ -6238,7 +6241,8 @@ h1.inst-header {
   text-align: center; }
 
 button.button {
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-family: "BentonSans-Black"; }
 
 .orange h1, .orange h2, .orange h3, .orange p, .purple h1, .purple h2, .purple h3, .purple p {
   color: white; }
@@ -6281,5 +6285,10 @@ button.button {
 #instructions.green button {
   color: white;
   background-color: #ffb00f; }
+
+#thanks p {
+  font-size: 3.5em; }
+  #thanks p b {
+    font-family: "BentonSans-Black"; }
 
 /*# sourceMappingURL=main.css.map */
