@@ -6099,11 +6099,13 @@ label.panel-block {
 html {
   overflow-y: hidden; }
 
+body {
+  overflow: hidden; }
+
 body, section {
   font-family: "BentonSans-Regular", "BentonSans", sans-serif;
   user-select: none;
-  border: none;
-  overflow: none; }
+  border: none; }
 
 section, .writing-container, .writing-container.container, .signature-container {
   height: 100%;
@@ -6124,48 +6126,58 @@ canvas {
 #splash {
   background: url("img/bg-splash.png") no-repeat left top;
   background-size: cover; }
+  #splash .container {
+    max-width: 1134px; }
 
+#identity div.header {
+  background: url("img/header-inst-purp.png") no-repeat left top;
+  background-size: 100%; }
 #identity div.section {
   padding: 70px 100px; }
-#identity p {
-  color: #515254; }
-#identity p.title {
-  padding-top: 70px; }
+#identity h2.title {
+  padding-top: 75px; }
+#identity p#email-error {
+  opacity: 0; }
+#identity .radio input {
+  width: 35px;
+  height: 33px;
+  top: 10px;
+  position: relative;
+  margin: 5px 0; }
+#identity button.submit {
+  padding-top: 10px; }
 
 #instructions .header {
   padding: 0px 40px; }
 #instructions img.open-logo {
   width: 200px; }
-#instructions button {
-  padding-left: 40px;
-  padding-right: 40px; }
 
 #instructions.orange .header {
   color: white;
   background: url("img/header-inst-orange.png") no-repeat left top;
   background-size: 100%; }
 #instructions.orange button {
-  color: #ffb00f; }
+  color: white; }
 
 #instructions.purple .header {
   background: url("img/header-inst-purp.png") no-repeat left top;
   background-size: 100%; }
 #instructions.purple button {
-  color: #4708a1; }
+  color: white; }
 
 #instructions.green .header {
   background: url("img/header-inst-green.png") no-repeat left top;
   background-size: 100%;
   color: #002663; }
 
-#phrase img.open-logo {
+#phrase img.open-logo, #signature img.open-logo {
   width: 200px; }
 
 #phrase.orange, #signature.orange, #thanks.orange {
   background: url("img/bg-orange.png") no-repeat left top;
   background-size: cover; }
 
-#phrase.purp, #signature.purp, #thanks.purp {
+#phrase.purple, #signature.purple, #thanks.purple {
   background: url("img/bg-purp.png") no-repeat left top;
   background-size: cover; }
 
@@ -6173,11 +6185,35 @@ canvas {
   background: url("img/bg-green.png") no-repeat left top;
   background-size: cover; }
 
-#signature img.open-logo, #thanks img.open-logo {
-  width: 200px; }
+#phrase canvas {
+  background: url("img/phrase-lines.png") no-repeat center 170px;
+  background-size: 90%;
+  background-color: white; }
+#phrase div.ghost {
+  pointer-events: none;
+  position: absolute;
+  z-index: 6;
+  top: 530px;
+  left: 139px; }
+
+#signature canvas {
+  background: url("img/sig-line.png") no-repeat center 340px;
+  background-size: 90%;
+  background-color: white; }
 
 #thanks p {
   margin: 40px 0; }
+
+#privacyModal {
+  width: 85%;
+  height: 85%;
+  padding: 40px; }
+  #privacyModal h3, #privacyModal h4 {
+    margin-top: 15px;
+    margin-bottom: 15px; }
+  #privacyModal p {
+    margin-top: 10px;
+    margin-bottom: 20px; }
 
 #instructions, #phrase, #signature, #identity, #thanks {
   display: none; }
@@ -6196,20 +6232,53 @@ section b {
   line-height: 1em;
   padding: 40px 0; }
 
+#identity div.header h1 {
+  color: white; }
 #identity label {
   text-transform: uppercase; }
-#identity label, #identity h1, #identity h2, #identity h3, #identity p {
+#identity label, #identity h2, #identity h3, #identity p {
   color: #1c2c5b; }
-  #identity label span, #identity h1 span, #identity h2 span, #identity h3 span, #identity p span {
+  #identity label span, #identity h2 span, #identity h3 span, #identity p span {
     color: #b31e12; }
 #identity p {
   font-size: 0.95em;
-  line-height: 1.5em; }
-#identity p.title {
-  font-family: "BentonSans-Regular";
+  line-height: 1.5em;
+  color: #1c2c5b; }
+#identity h2.title {
+  font-family: "BentonSans-Bold";
   font-size: 2em;
   text-transform: uppercase;
   text-align: center; }
+#identity .is-danger-text {
+  color: #ff3860; }
+
+#privacyModal h1, #privacyModal h2, #privacyModal h3, #privacyModal h4, #privacyModal h5 {
+  text-transform: uppercase; }
+#privacyModal h3 {
+  font-size: 30px; }
+#privacyModal h3, #privacyModal h4 {
+  font-family: "BentonSans-Bold"; }
+#privacyModal h4, #privacyModal h5 {
+  font-size: 24px; }
+#privacyModal h5 {
+  font-family: "BentonSans-Medium"; }
+#privacyModal p {
+  font-size: 20px; }
+#privacyModal ul {
+  list-style-position: inside;
+  list-style-type: disc;
+  margin-bottom: 15px; }
+  #privacyModal ul li {
+    font-size: 20px; }
+    #privacyModal ul li ul {
+      padding-left: 25px; }
+
+#phrase div.ghost p {
+  font-family: "BentonSans-Regular";
+  color: #b3d8ed;
+  font-size: 25px;
+  font-style: italic;
+  line-height: 180px; }
 
 #signature h1.title {
   font-size: 4em; }
@@ -6242,24 +6311,26 @@ h1.inst-header {
 
 button.button {
   text-transform: uppercase;
-  font-family: "BentonSans-Black"; }
+  font-family: "BentonSans-Black";
+  text-align: center;
+  padding-top: 5px; }
 
 .orange h1, .orange h2, .orange h3, .orange p, .purple h1, .purple h2, .purple h3, .purple p {
   color: white; }
 
 .orange .header {
   color: white; }
-.orange button, .orange h1.inst-header {
+.orange button, .orange button:hover, .orange button:active, .orange h1.inst-header {
   color: #ffb00f; }
 
-.purple button, .purple h1.inst-header {
+.purple button, .purple button:hover, .purple button:active, .purple h1.inst-header {
   color: #4708a1; }
 
 .green .header {
   color: #002663; }
 .green h1, .green h2, .green h3, .green p {
   color: #002663; }
-.green button, .green h1.inst-header {
+.green button, .green button:hover, .green button:active, .green h1.inst-header {
   color: #1ab0a8; }
 
 #instructions button {
@@ -6274,17 +6345,17 @@ button.button {
     #instructions ol li b {
       font-family: "BentonSans-Black"; }
 
-#instructions.orange button {
+#instructions.orange button, #instructions.orange button:hover, #instructions.orange button:active {
   color: white;
   background-color: #ffb00f; }
 
-#instructions.purple button {
+#instructions.purple button, #instructions.purple button:hover, #instructions.purple button:active {
   color: white;
-  background-color: #ffb00f; }
+  background-color: #4708a1; }
 
-#instructions.green button {
+#instructions.green button, #instructions.green button:hover, #instructions.green button:active {
   color: white;
-  background-color: #ffb00f; }
+  background-color: #1ab0a7; }
 
 #thanks p {
   font-size: 3.5em; }

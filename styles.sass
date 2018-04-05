@@ -41,12 +41,14 @@ $body-copy-size: 40px
 // Template Styling
 html
   overflow-y: hidden
+
+body
+  overflow: hidden
   
 body, section
   font-family: $font-stack
   user-select: none
   border: none
-  overflow: none
   
 section, .writing-container, .writing-container.container, .signature-container
   height: 100%
@@ -67,23 +69,35 @@ canvas
 #splash
   background: url('img/bg-splash.png') no-repeat left top
   background-size: cover
+  .container
+    max-width: 1134px
   
 #identity
+  div.header
+    background: url('img/header-inst-purp.png') no-repeat left top
+    background-size: 100%
   div.section
     padding: 70px 100px
-  p
-    color: #515254
-  p.title
-    padding-top: 70px
+  h2.title
+    padding-top: 75px
+  p#email-error
+    opacity: 0
+  .radio input
+    width: 35px
+    height: 33px
+    top: 10px
+    position: relative
+    margin: 5px 0
+  button.submit
+    padding-top: 10px
 
 #instructions
   .header
     padding: 0px 40px
   img.open-logo
     width: 200px
-  button
-    padding-left: 40px
-    padding-right: 40px
+  button.next
+    // padding: 3px 0 0 40px
     
 #instructions.orange
   .header
@@ -91,44 +105,77 @@ canvas
     background: url('img/header-inst-orange.png') no-repeat left top
     background-size: 100%
   button
-    color: #ffb00f
+    color: white
       
 #instructions.purple
   .header
     background: url('img/header-inst-purp.png') no-repeat left top
     background-size: 100%
   button
-    color: #4708a1
+    color: white
     
 #instructions.green
   .header
     background: url('img/header-inst-green.png') no-repeat left top
     background-size: 100%
     color: #002663
-  
-#phrase
+
+#phrase, #signature
   img.open-logo
     width: 200px
+  button.clear
+//    padding: 3px 0 0 26px
+  button.next
+//    padding: 3px 0 0 40px
+    
 #phrase.orange, #signature.orange, #thanks.orange
   background: url('img/bg-orange.png') no-repeat left top
   background-size: cover
   
-#phrase.purp, #signature.purp, #thanks.purp
+#phrase.purple, #signature.purple, #thanks.purple
   background: url('img/bg-purp.png') no-repeat left top
   background-size: cover
   
 #phrase.green, #signature.green, #thanks.green
   background: url('img/bg-green.png') no-repeat left top
   background-size: cover
-
-#signature, #thanks
-  img.open-logo
-    width: 200px
+  
+#phrase
+  canvas
+    background: url("img/phrase-lines.png") no-repeat center 170px
+    background-size: 90%
+    background-color: white
+  div.ghost
+    pointer-events: none
+    position: absolute
+    z-index: 6
+    top: 530px
+    left: 139px
+  
+#signature
+  canvas
+    background: url("img/sig-line.png") no-repeat center 340px
+    background-size: 90%
+    background-color: white
   
 #thanks
   p
     margin: 40px 0
-  
+  button.finish
+//    padding: 7px 0px 0 22px
+    
+#privacyModal
+  width: 85%
+  height: 85%
+  padding: 40px
+  h3, h4
+    margin-top: 15px
+    margin-bottom: 15px
+  p
+    margin-top: 10px
+    margin-bottom: 20px
+
+
 // Hiding
 #instructions, #phrase, #signature, #identity, #thanks
   display: none
@@ -152,21 +199,59 @@ section
     padding: 40px 0
     
 #identity
+  div.header
+    h1
+      color: white
   label
     text-transform: uppercase
-  label, h1, h2, h3, p
+  label, h2, h3, p
     color: #1c2c5b
     span
       color: #b31e12
   p
     font-size: .95em
     line-height: 1.5em
-  p.title
-    font-family: 'BentonSans-Regular'
+    color: #1c2c5b
+  h2.title
+    font-family: 'BentonSans-Bold'
     font-size: 2em
     text-transform: uppercase
     text-align: center
+  .is-danger-text
+    color: #ff3860
     
+#privacyModal
+  h1, h2, h3, h4, h5
+    text-transform: uppercase
+  h3
+    font-size: 30px
+    //color: #1c2c5b
+  h3, h4
+    font-family: 'BentonSans-Bold'
+  h4, h5
+    font-size: 24px
+  h5
+    font-family: 'BentonSans-Medium'
+  p
+    font-size: 20px
+  ul
+    list-style-position: inside
+    list-style-type: disc
+    margin-bottom: 15px
+    li
+      font-size: 20px
+      ul
+        padding-left: 25px
+
+#phrase
+  div.ghost
+    p
+      font-family: 'BentonSans-Regular'
+      color: #b3d8ed
+      font-size: 25px
+      font-style: italic
+      line-height: 180px
+  
 #signature
   h1.title
     font-size: 4em
@@ -200,6 +285,8 @@ h1.inst-header
 button.button
   text-transform: uppercase
   font-family: 'BentonSans-Black'
+  text-align: center
+  padding-top: 5px
   
 .orange, .purple
   h1, h2, h3, p
@@ -208,11 +295,11 @@ button.button
 .orange
   .header
     color: white
-  button, h1.inst-header
+  button, button:hover, button:active, h1.inst-header
     color: #ffb00f
   
 .purple
-  button, h1.inst-header
+  button, button:hover, button:active, h1.inst-header
     color: #4708a1
     
 .green
@@ -220,7 +307,7 @@ button.button
     color: #002663
   h1, h2, h3, p
     color: #002663
-  button, h1.inst-header
+  button, button:hover, button:active, h1.inst-header
     color: #1ab0a8
 
 #instructions
@@ -237,19 +324,19 @@ button.button
         font-family: 'BentonSans-Black'
       
 #instructions.orange
-  button
+  button, button:hover, button:active
     color: white
     background-color: #ffb00f
     
 #instructions.purple
-  button
+  button, button:hover, button:active
     color: white
-    background-color: #ffb00f
+    background-color: #4708a1
     
 #instructions.green
-  button
+  button, button:hover, button:active
     color: white
-    background-color: #ffb00f
+    background-color: #1ab0a7
     
 #thanks
   p

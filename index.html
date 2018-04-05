@@ -4,12 +4,17 @@
   <head>
     <!-- The only weird stuff I used was the Bulma framework for styling/helpers and SASS for CSS preprocessing. -->
     <meta charset="utf-8">
+<!--    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
     <meta name="description" content="American Express - The Write Stuff">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+<!--    <meta name="apple-mobile-web-app-status-bar-style" content="black">-->
     <title>The Write Stuff by AMEX Open</title>
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="override.css">
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
   </head>
   
   <body onselectstart="return false">
@@ -19,146 +24,176 @@
         <div class=""><h1>The<br>Write<br>Stuff</h1></div>
         <p class="is-pulled-left">There's a story<br>behind every<br>signature.<br>Discover yours.</p>
       </div>
+      <div style="display: none !important;" class="app">
+        <h1>Apache Cordova</h1>
+        <h4>cordova-plugin-forcetouch</h4>
+        <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div>
+        <br>
+        <div id="forcetouch">
+          <h5>Force Touch Status: <span id="forceTouchCapability">-</span></h5>
+          <h5>Tap Count: <span id="tapCount">-</span></h5>
+          <h5>Timestamp: <span id="timestamp">-</span></h5>
+          <h5>Phase: <span id="phase">-</span></h5>
+          <h5>Force: <span id="force">-</span></h5>
+          <h5>Max. Force: <span id="maximumPossibleForce">-</span></h5>
+          <h5>Touch Type: <span id="touchType">-</span></h5>
+        </div>
+      </div>
     </section>
     
     <section id="identity" class="is-fullheight">
+      <div class="header level">
+        <img src="img/logo-open.png" class="level-left open-logo open-light refresh" alt="">
+        <h1 class="level-right">The Write Stuff</h1>
+      </div>
+<!--
       <div class="header">
-        <img src="img/header-form.png" class="no-padding no-margin" alt="">
+        <img src="img/header-form.png" class="no-padding no-margin refresh" alt="">
       </div>
+-->
       <div class="column is-centered">
-        <p class="title">Enter Your Information Below to Get Your Results.</p>
+        <h2 class="title">Enter Your Information Below to Get Your Results</h2>
       </div>
-      <div class="section columns">
-        <div class="column">
-          <div class="columns">
-            <div class="field column">
-              <label class="label is-medium">First Name<span>*</span></label>
-              <div class="control">
-                <input class="input is-medium" type="text" placeholder="">
+      <form id="identityForm" action="">
+        <div class="section columns">
+          <div class="column left">
+            <div class="columns">
+              <div class="field column">
+                <label class="label is-medium">First Name<span>*</span></label>
+                <div class="control">
+                  <input id="fname" class="input is-medium required" autocomplete="off" type="text" placeholder="">
+                </div>
+              </div>
+              <div class="field column">
+                <label class="label is-medium">Last Name<span>*</span></label>
+                <div class="control">
+                  <input id="lname" class="input is-medium required" autocomplete="off" type="text" placeholder="">
+                </div>
               </div>
             </div>
-            <div class="field column">
-              <label class="label is-medium">Last Name<span>*</span></label>
-              <div class="control">
-                <input class="input is-medium" type="text" placeholder="">
-              </div>
-            </div>
-          </div>
 
-          <div class="field">
-            <label class="label is-medium">Business Name<span>*</span></label>
-            <div class="control">
-              <input class="input is-medium" type="text" placeholder="" value="">
-            </div>
-            <p class="help is-danger"></p>
-          </div>
-
-          <div class="field">
-            <label class="label is-medium">Email</label>
-            <div class="control">
-              <input class="input is-medium" type="email" placeholder="">
-            </div>
-            <p class="help is-danger"></p>
-          </div>
-          <div class="control">
-            <p><b><span>*</span>All fields are required.</b>
-            <br>By providing your email address, you agree to receive information about American Express OPEN&reg; products, services and offers. For information about how we protect your privacy, please read our <a href="">Privacy Statement</a>.</p>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="field">
-            <label class="label is-medium">
-              Which Best Describes You?<span>*</span>
-            </label>
-            <div class="control">
-              <label class="is-medium radio">
-                <input type="radio" class="is-medium" name="role-desc" value="Business Owner">
-                Business Owner
-              </label>
-              <br><label class="is-medium radio">
-                <input type="radio" class="is-medium" name="role-desc" value="Decision Maker">
-                Decision Maker
-              </label>
-              <br><label class="is-medium radio">
-                <input type="radio" class="is-medium" name="role-desc" value="Employee">
-                Employee
-              </label>
-            </div>
-          </div>
-          <div class="column">
             <div class="field">
-              <label class="label is-medium">
-                Are You a Current Card Member?<span>*</span>
+              <label class="label is-medium">Business Name<span>*</span></label>
+              <div class="control">
+                <input id="business" class="input is-medium required" autocomplete="off" type="text" placeholder="">
+              </div>
+<!--              <p class="help is-danger"></p>-->
+            </div>
+
+            <div class="field">
+              <label class="label is-medium">Email<span>*</span></label>
+              <div class="control">
+                <input id="email" class="input is-medium required" autocomplete="off" type="email" placeholder="">
+              </div>
+              <p class="help is-danger-text" id="email-error">Please enter a valid email address.</p>
+            </div>
+            <div class="control rules">
+              <p><b><span>*</span>All fields are required.</b>
+              <br>By providing your email address, you agree to receive information about American Express OPEN&reg; products, services and offers. For information about how we protect your privacy, please read our <a data-fancybox data-src="#privacyModal" href="javascript:;">Privacy Statement</a>.</p>
+            </div>
+          </div>
+
+          <div class="column right">
+            <div class="field">
+              <label class="label role-label is-medium">
+                Which Best Describes You?<span>*</span>
               </label>
               <div class="control">
                 <label class="is-medium radio">
-                  <input type="radio" class="is-medium" name="cardmember" value="Business Owner">
-                  Yes
+                  <input type="radio" class="" autocomplete="off" name="role-desc" value="Business Owner">
+                  Business Owner
                 </label>
-                <label class="is-medium radio">
-                  <input type="radio" class="is-medium" name="cardmember" value="Business Owner">
-                  No
+                <br><label class="is-medium radio">
+                  <input type="radio" class="" autocomplete="off" name="role-desc" value="Decision Maker">
+                  Decision Maker
+                </label>
+                <br><label class="is-medium radio">
+                  <input type="radio" class="" autocomplete="off" name="role-desc" value="Employee">
+                  Employee
                 </label>
               </div>
             </div>
             <div class="field">
-              <div class="control columns">
-               <div class="column">
-                 I have read and agree to be bound by the <a href="javascript:void()">Official Rules</a>
-               </div>
-               <div class="column">
-                 <label class="checkbox">
-                   <input type="checkbox">
-                   <b>I ACCEPT</b>
-                 </label>
-               </div>
+              <div class="field member">
+                <label class="label cardmember-label is-medium">
+                  Are You a Current Card Member?<span>*</span>
+                </label>
+                <div class="control">
+                  <label class="is-medium radio">
+                    <input type="radio" class="is-medium" autocomplete="off" name="cardmember" value="Yes">
+                    Yes
+                  </label>
+                  <label class="is-medium radio">
+                    <input type="radio" class="is-medium" autocomplete="off" name="cardmember" value="No">
+                    No
+                  </label>
+                </div>
               </div>
-            </div>
+              <div class="field acceptSubmit">
+                <div class="control columns">
+                 <div class="field submit">
+                     <div class="field">
+                         <button disabled class="button is-primary submit" id="submit">Submit</button>
+                         <a href="" class="cancel" id="cancel">CANCEL</a>
+                     </div>
+                 </div>
+                </div>
+              </div>
 
-            <div class="field is-grouped">
-              <button class="button is-primary" id="submit">Submit</button>
-              <button class="button is-text" id="cancel">Cancel</button>
+
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </section>
     
     <section id="instructions" class="orange">
       <div class="header level">
-        <img src="img/logo-open.png" class="level-left open-logo open-light" alt="">
+        <img src="img/logo-open.png" class="level-left open-logo open-light refresh" alt="">
         <h1 class="level-right">The Write Stuff</h1>
       </div>
       <div class="section">
         <div class="columns is-centered">
-          <div class="column is-9">
+          <div class="column is-11 howTo">
             <h1 class="inst-header is-centered">HOW TO DO IT WRITE</h1>
             <ol>
-              <li>You'll be given a short phrases to copy, using the stylus.</li>
-              <li>Then write your signature on the next screen.</li>
-              <li>We'll email you an analysis of your handwriting to<br>help you <b>#GETBUSINESSDONE</b>.</li>
+              <li class="first">You'll be given a short phrase to copy using the stylus</li>
+              <li>Then write your signature on the next screen</li>
+              <li>We'll email you an analysis of your handwriting to<br>help you <b>#GETBUSINESSDONE</b></li>
             </ol> 
           </div>
         </div>
         <div class="columns is-centered">
           <div class="column is-9">
-            <button value="Next" id="next-inst" class="is-size-3 is-pulled-right button">Next</button>
+            <button value="Next" id="next-inst" class="is-pulled-right button next">Next</button>
           </div>
         </div>
       </div>
     </section>
     
-    <section id="phrase" class="writing-container section hero is-fullheight signature-pad orange">
-      <div class="level container">
+    <section id="phrase" class="writing-container hero is-fullheight signature-pad orange">
+      <!--div class="level container">
         <div class="level-left"><img src="img/logo-open.png" class="open-logo" alt=""></div>
         <div class="level-right"><h1>The Write Stuff</h1></div>
+      </div-->
+      <div class="header level">
+          <img src="img/logo-open.png" class="level-left open-logo open-light refresh" alt="">
+          <h1 class="level-right">The Write Stuff</h1>
       </div>
       <div class="container">
-        <h2>Please copy the phrase into<br>the space below</h2>
+        <h2>Use your handwriting to copy the<br>phrase on to the two lines below</h2>
         <p class="quote">&ldquo;Good ideas are nothing without a plan of action.&rdquo;</p>
       </div>
       <div class="hero-body">
+        <div class="ghost">
+          <p>
+            Good ideas are nothing
+            <br>without a plan of action.
+          </p>
+        </div>
         <div class="container signature-pad--body">
           <canvas></canvas>
         </div>
@@ -166,17 +201,18 @@
       <div class="hero-footer">
         <div class="container">
           <input type="hidden" value="">
-          <button value="Clear" id="clear-phrase" class="is-pulled-right is-size-3 button clear">Clear</button><button value="Next" id="next-phrase" class="is-pulled-right is-size-3 button save">Next</button>
+          <button value="Clear" id="clear-phrase" class="is-pulled-left is-size-3 button clear">Clear</button>
+          <button value="Next" id="next-phrase" class="next is-pulled-right is-size-3 button save">Next</button>
         </div>
       </div>
     </section>
     
-    <section id="signature" class="writing-container section hero is-fullheight signature-pad orange">
-      <div class="level container">
-        <div class="level-left"><img src="img/logo-open.png" class="open-logo" alt=""></div>
-        <div class="level-right"><h1>The Write Stuff</h1></div>
+    <section id="signature" class="writing-container hero is-fullheight signature-pad orange">
+      <div class="header level">
+        <img src="img/logo-open.png" class="level-left open-logo open-light refresh" alt="">
+        <h1 class="level-right">The Write Stuff</h1>
       </div>
-      <div class="container hero-body">
+      <div class="container description">
         <h1 class="title">Let's see your signature</h1>
       </div>
       <div class="container signature-pad--body">
@@ -185,35 +221,211 @@
       <div class="hero-footer">
         <div class="container">
           <input type="hidden" value="">
-          <button value="Next" id="next-sig" class="is-pulled-right is-size-3 button save">Next</button>
+          <button value="Clear" id="clear-sig" class="is-pulled-left is-size-3 button clear">Clear</button>
+          <button value="Next" id="next-sig" class="next is-pulled-right is-size-3 button save next">Next</button>
         </div>
+      </div>
+      <div class="modal" id="errorModal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <article class="message is-warning">
+            <div class="message-header">
+              <p>Uh oh.</p>
+              <button class="delete error-modal-close" aria-label="close"></button>
+            </div>
+            <div class="message-body">
+              Please check the internet connection &amp; try submitting again.
+            </div>
+          </article>
+        </div>
+<!--        <button class="modal-close is-large" aria-label="close"></button>-->
       </div>
     </section>
     
     <section id="thanks" class="orange">
-      <div class="level container">
-        <div class="level-left"><img src="img/logo-open.png" class="open-logo" alt=""></div>
-        <div class="level-right"><h1>The Write Stuff</h1></div>
+      <div class="header level">
+        <img src="img/logo-open.png" class="level-left open-logo open-light refresh" alt="">
+        <h1 class="level-right">The Write Stuff</h1>
       </div>
       <div class="container hero-body">
-        <p>Our graphologists are hard at work analyzing your handwriting's signature traits.</p>
-        <p>The results will be in soon,
+        <p>Our graphologists are hard at<br/>work analyzing your handwriting's signature traits.</p>
+        <p>The results will be in soon
         <br>so you can <b>#GETBUSINESSDONE</b>.</p>
       </div>
       <div class="hero-footer">
         <div class="container">
-          <input type="hidden" value="">
-          <button value="Finish" id="finish" class="is-pulled-right is-size-3 button save">Finish</button>
+          <button value="Finish" id="finish" class="is-pulled-right is-size-3 button save finish">Finish</button>
         </div>
       </div>
     </section>
     
+    <div style="display: none;" id="privacyModal" class="scrollable">
+      <h3>U.S. Online Privacy Statement</h3>
+      <p>At American Express, we are committed to safeguarding your privacy. We want you to know how we may collect, use, share, and keep information about you and the choices that are available to you.</p>
+      <p>When we provide American Express products or services to you, we may also give you specific additional details about how we will use your Personal Information. If you have an American Express product or service that is not provided by American Express (such as a card issued by one of our partner banks), please review the relevant privacy notice that covers such product or service or contact your product or service provider for information about their privacy practices.</p>
+      <p>This online privacy statement applies to American Express websites, online applications ("apps") that run on smart phones, tablets, and other devices that link to this statement. It does not apply to those websites that have their own online privacy statements including the American Express Network website, amexnetwork.com.</p>
+      <p>Our websites and apps are not intended for children under 13 years of age. We do not knowingly solicit data online from, or market online to, children under 13 years of age.</p>
+
+      <h4>What information does this Online Privacy Statement&nbsp;cover?</h4>
+        
+      <p>
+        This online privacy statement describes how we (and our Service Providers) may collect, use, share and keep information that we get about you online. We gather Online Information if you:
+      </p>
+      <ul>
+        <li>Visit or use our website or apps;</li>
+        <li>Receive or reply to electronic communications from us;</li>
+        <li>View or click on our ads or other online content; and</li>
+        <li>Interact with us through social media websites and other websites and applications.</li>
+      </ul>
+      <p>In this statement, we also explain how we may combine Online Information with Other Information and how we then use the combined information.</p>
+       
+      <h3>What information do we collect online and how do we collect it?</h3>
+        
+      <p>The types of information we collect depends on which product or service you use.</p>
+        
+      <p>Sometimes you give information directly to us (or to our Service Providers). For example, you might give us your name, account number, email, mailing address, phone number, or date of birth when you:</p>
+      <ul>
+        <li>fill out an online form or survey, including when you book travel with us; </li>
+        <li>register, log into or update the settings on your account using our online services;</li>
+        <li>enter a competition or register for a marketing offer; or </li>
+        <li>buy something on our websites.</li>
+      </ul>
+      
+      <p> We (and our Service Providers or Third-Party Ad-Servers) also collect information through Cookies and Similar Technologies. Most Cookies and Similar Technologies will only collect De-Identified Information such as how you arrive at our website or your general location. However, certain Cookies and Similar Technologies do collect Personal Information. For example, if you click Remember Me when you log in to our website, a cookie will store your username.</p>
+
+      <p>We (and our Service Providers or Third-Party Ad-Servers) may collect information using Cookies and Similar Technologies about:</p> 
+      <ul>
+        <li>the device you use to browse our websites or to access our apps (for example, we may collect information about the operating system or the browser version and the type of device you use to open electronic communications from us);</li>
+        <li>the IP Address and information related to that IP Address (such as domain information, your internet provider and general geographic location);</li>
+        <li>browsing history on our website or in our apps (such as what you search for, the pages you view, how long you stay, and how often you come back);</li>
+        <li>how you search for our website, from which websites you link to our website, and which of our Business Partners’ websites you visit;</li>
+        <li>which ads or online content from us and our Business Partners you view, access, or click on;</li>
+        <li>your browsing and app use activities over time, and across other websites and apps, following your visit to one of our websites or apps (Service Providers or Third-Party Ad-Servers perform such activities on our behalf);</li>
+        <li>the likely associations among different browsers and devices; 
+      </li>
+        <li>whether you open our electronic communications and which parts you click on; and</li>
+        <li>the location of your mobile device (for example, when you use mobile websites or apps to register to receive location-based content).</li>
+      </ul>
+      
+      <p>We (and our Service Providers or Third-Party Ad-Servers) may also collect information made available through third-party platforms and apps (such as online social media platforms), through online databases or directories, or that is otherwise legitimately obtained. This information may be governed by the privacy notice(s) provided by the third party at the time of collection.</p>
+      
+      <h4>How do we use the information we collect about you?</h4>
+      <p>We may use Online Information we collect about you on its own or combine it with Other Information to:</p>
+
+      <ul>
+        <li>deliver products and services, including to:
+          <ul>
+            <li>recognize you when you return to our websites or use our apps across multiple devices; </li>
+            <li>complete transactions;</li>
+            <li>tell you about updates to your accounts, products, and services;</li>
+            <li>update you about new features and benefits;</li>
+            <li>answer questions and respond to your requests made through our websites and through third-party websites (including social media);</li>
+            <li>use the location of your mobile device for location-based services that you may request; </li>
+            <li>determine how to best provide services to you and manage your accounts, such as the best way and time to contact you; </li>
+            <li>improve our websites or apps and make them easier to use;</li>
+          </ul>
+        </li>
+        <li>advertise and market our products and services – and those of our Business Partners – including to:
+          <ul>
+            <li>present content or ads online that are tailored to your interests, including Targeted Advertising, across multiple devices;</li>
+            <li>send or provide you with ads, promotions, and offers;</li>
+            <li>analyze whether our ads, promotions, and offers are effective;</li>
+            <li>help us determine whether you may be interested in new products or services;</li>
+            <li>provide location-based content and advertising personalization;</li>
+          </ul>
+        </li>
+        <li>conduct research and analysis, including to: 
+          <ul>
+            <li>better understand our customers and our website visitors or app users;</li>
+            <li>allow you to give feedback by rating and reviewing our products and services and those of our Business Partners;</li>
+            <li>produce data analytics, statistical research, and reports;</li>
+            <li>review and change our products and services;</li>
+          </ul>
+        </li>
+        <li>manage fraud and security risk, including to:
+          <ul>
+            <li>detect and prevent fraud or criminal activity;</li>
+            <li>safeguard the security of your information;</li>
+          </ul>
+        </li>
+        <li>assess credit risks relating to our business, including to:
+          <ul>
+            <li>evaluate and process your applications for our products and services and manage your existing accounts; and</li>
+          </ul>
+        </li>
+        <li>use it in other ways as required or permitted by law or with your consent.</li>
+      </ul>
+      
+      <h4>How do we share your information?</h4>
+      
+      <p>Some Online Information is Personal Information.</p>
+
+      <h5>How do we treat your Personal Information?</h5>
+
+      <p>We do not share Personal Information with anyone except as described below. However, we may share Personal Information as required or as permitted by law, such as:</p>
+      
+      <ul>
+        <li>with credit bureaus and similar institutions to report or ask about your financial circumstances, and to report or collect debts you owe;</li>
+        <li>with regulatory authorities, courts, and governmental agencies to comply with legal orders, legal or regulatory requirements, and government requests;</li>
+        <li>with our Service Providers, regulatory authorities, and governmental agencies to detect and prevent fraud or criminal activity, and to protect the rights of American Express or others;</li>
+        <li>within the American Express Family of Companies;</li>
+        <li>with our Service Providers who perform services for us and help us operate our business (we require Service Providers to safeguard Personal Information and only use your Personal Information for the purposes we specify); </li>
+        <li>with financial institutions or Co-brand Partners with whom we jointly offer or develop products and services (but they may not use your Personal Information - in particular your email address - to independently market their own products or services to you unless you consent that they can do so); </li>
+        <li>in the context of a sale of all or part of the American Express Family of Companies or their assets; or</li>
+        <li>for specific products or services, when you have given your consent.</li>
+      </ul>
+      
+      <p>We may transfer Personal Information to Service Providers or companies within the American Express Family of Companies throughout the world, for example, to process transactions and provide you with our products or services. Regardless of where we process your information, we still protect it in the manner described in this online privacy statement and according to the applicable laws.</p>
+      
+      <h5>How we handle Aggregated and De-identified Information?</h5>
+
+      <p>Aggregated Information or De-identified Information does not identify you individually; it helps us to analyze patterns among groups of people. We may share Aggregated Information or De-identified Information in several ways, for example: </p>
+      
+      <ul>
+        <li>for the same reasons as we might share Personal Information; </li>
+        <li>with Business Partners to help develop and market products or services and present targeted content and  Targeted Advertising;</li>
+        <li>with Business Partners to conduct analysis and research about customers and website visitors; or</li>
+        <li>with Third-Party Ad-Servers to place ads (including ads of our Business Partners) on various websites and apps, and to analyze the effectiveness of those ads.</li>
+      </ul>
+      
+      <h4>How do we keep and safeguard your information?</h4>
+       
+      <p>We use administrative technical and physical security measures to protect your Personal Information. These measures include computer safeguards and secured files and facilities. We take reasonable steps to securely destroy or permanently de-identify Personal Information when we no longer need it. We will keep your Online Information only as long as we must to deliver our products and services, unless we are required by law or regulation or for litigation and regulatory investigations to keep it.</p>
+      
+      <h4>What are your choices?</h4>
+      
+      <p>You have choices about how American Express uses your information, such as how we market to you or how we manage Cookies and Similar Technologies. 
+      <br>We participate in the Digital Advertising Alliance (DAA) self-regulatory program and adhere to the DAA Principles for Online Behavioral Advertising. Click here to learn more about the DAA and your choices related to Targeted Advertising.
+      <br>If you do not want to receive Targeted Advertising from American Express on websites, click here. If you do not want to receive Targeted Advertising from American Express in apps, you can turn off mobile device ad tracking or reset the advertising identifier in your device setting, where these tools are available from your device platform, on each of the devices that you use. If you do not want to receive Targeted Advertising using precise location data, you can turn off location-based services in your device settings.</p>
+      
+      <h5>What are your choices about how we directly market to you?</h5>
+      <p>You can choose how you would like to receive direct marketing communications - whether we send them to you through postal mail, email and/or telephone. If you choose to not receive marketing communications from us, we will honor your choice. Please be aware that if you choose not to receive such communications, certain offers attached to the product or services you have chosen may be affected. We will still communicate with you in connection with servicing your account, fulfilling your requests, or administering any promotion or any program in which you have elected to participate.</p>
+       
+      <h5>What other choices do you have?</h5>
+
+      <p>You can also:</p>
+      <ul>
+        <li>click unsubscribe on the bottom of e-mails and follow the instructions or go to americanexpress.com/preferences;</li>
+        <li>register for the National Do Not Call List at donotcall.gov/default.aspx; and/or</li>
+        <li>Register for the Direct Marketing Association’s Mail Preference Service at dmachoice.org/register.php.</li>
+      </ul>
+
+      <h5>How can you update your Personal Information?</h5>
+
+      <p>Card Members can log in to their Card accounts at americanexpress.com to correct or update their Personal Information . They can also call the number on the back of their Card. Non Card Members can call the customer service number associated with their product.</p>
+      
+      <h3>If you have questions about our online privacy statement, call us at the number on the back of your Card.</h3>
+
+    </div>
+    
     <!-- Vendor Scripts -->
+    <script src="cordova.js"></script>
     <script src="plugins/jquery.min.js"></script>
     <script src="plugins/signature_pad.js"></script> <!-- *modified* Core signature plugin -->
     <script src="plugins/trim-canvas.js"></script> <!-- Plugin to trim the canvas down, if necessary -->
     <script src="plugins/moment.js"></script>
     <script src="plugins/fastclick.js"></script>
+    <script src="plugins/jquery.fancybox.min.js"></script>
     
     <!-- Main Scripts -->
     <script src="app.js"></script>
